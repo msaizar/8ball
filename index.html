@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>8 Ball App</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+		<script type="text/javascript" src="core/js/require.js"></script>
+		<script type="text/javascript" src="core/js/main.js"></script>
+			
+	</head>
+	<body id="8ballApp">
+        <nav class="navbar navbar-default" role="navigation">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">8 Ball App</a>
+            </div>
+          </div><!-- /.container-fluid -->
+        </nav>
+        <div class="container-fluid">
+            
+            <div data-bind="visible: visible" id="start" class="jumbotron">
+                <h1>Welcome to 8ball!</h1>
+                <p><a data-bind="click: getStarted" class="btn btn-primary btn-lg" role="button">Get Started</a></p>
+                
+            </div>
+            
+            <div class="row">
+                <div id="player_selection" class="col-lg-6" data-bind="visible: visible">
+                    <h1>Player Selection</h1>                
+                    <form role="form">
+                        
+                        <!-- ko foreach: players -->
+                        <div class="form-group">            
+                            <label for="player_name">Player Name</label>
+                            <input data-bind="value: name" id="player_name" type="text" class="form-control" placeholder="Player Name">
+                        </div>
+                        <!-- /ko -->
+
+                        
+                        <div class="form-group">
+                            <button data-bind="click: addPlayer" type="button" class="btn btn-default">Add player</button>
+                        </div>
+                        
+                        
+
+                        <button data-bind="click: navigateToOpener" type="button" class="btn btn-default">Go</button>
+                    
+                    </form>
+                </div>                    
+                <div id="scores" class="col-lg-6" data-bind="visible: visible">
+                    <h1>Scores</h1>                
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Player</th>
+                                <th>Played</th>
+                                <th>Won</th>
+                                <th>Lost</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ko foreach: players -->
+                            <tr>                            
+                                <td data-bind="value: name"></td>
+                                <td data-bind="value: name"></td>
+                                <td data-bind="value: name"></td>
+                                <td data-bind="value: name"></td>
+                                <td data-bind="value: name"></td>
+                            </tr>
+                            
+                            <!-- /ko -->
+                        </tbody>    
+                    </table>
+                </div>                    
+            
+                <div id="opener" class="col-lg-6" data-bind="visible: visible">
+                    <h1>Opener</h1>                
+                    <form role="form">
+                
+                        <div class="form-group">
+                            <label for="opener">Select player who opens</label>
+                            <select>
+                                <!-- ko foreach: players -->
+                                <option data-bind="text: name"></option>                            
+                                <!-- /ko -->
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn btn-default">Go</button>
+                    
+                    </form>
+                </div>                    
+            
+                <div id="colors" class="col-lg-6" data-bind="visible: visible">
+                    <h1>Colors</h1>                
+                    <form role="form">
+                
+                        <div class="form-group">
+                            <label for="number_of_players">Stripes</label>
+                            <select>
+                                <option>Player</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-default">Go</button>
+                        
+                    </form>
+                </div>                    
+            
+                <div id="end_game" class="col-lg-6" data-bind="visible: visible">
+                    <h1>End Game</h1>                
+                    <canvas>
+                    </canvas>
+                </div>                    
+            </div>
+            
+        </div>
+    </body>
+</html>
