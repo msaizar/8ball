@@ -35,12 +35,12 @@
             
             <div class="row">
                 <div id="player_selection" class="col-lg-6" data-bind="visible: visible">
-                    <h1>Player Selection</h1>                
+                    <h1>Pick Names</h1>                
                     <form role="form">
                         
                         <!-- ko foreach: players -->
                         <div class="form-group">            
-                            <label for="player_name">Player Name</label>
+                            <label for="player_name">Name</label>
                             <input data-bind="value: name" id="player_name" type="text" class="form-control" placeholder="Player Name">
                         </div>
                         <!-- /ko -->
@@ -72,35 +72,18 @@
                         <tbody>
                             <!-- ko foreach: players -->
                             <tr>                            
-                                <td data-bind="value: name"></td>
-                                <td data-bind="value: name"></td>
-                                <td data-bind="value: name"></td>
-                                <td data-bind="value: name"></td>
-                                <td data-bind="value: name"></td>
+                                <td data-bind="text: name"></td>
+                                <td data-bind="text: games_played"></td>
+                                <td data-bind="text: games_won"></td>
+                                <td data-bind="text: games_lost"></td>
+                                <td data-bind="text: points"></td>
                             </tr>
                             
                             <!-- /ko -->
                         </tbody>    
                     </table>
                 </div>                    
-            
-                <div id="opener" class="col-lg-6" data-bind="visible: visible">
-                    <h1>Opener</h1>                
-                    <form role="form">
-                
-                        <div class="form-group">
-                            <label for="opener">Select player who opens</label>
-                            <select>
-                                <!-- ko foreach: players -->
-                                <option data-bind="text: name"></option>                            
-                                <!-- /ko -->
-                            </select>
-                        </div>
-
-                        <button type="button" class="btn btn-default">Go</button>
-                    
-                    </form>
-                </div>                    
+                          
             
                 <div id="colors" class="col-lg-6" data-bind="visible: visible">
                     <h1>Colors</h1>                
@@ -108,17 +91,19 @@
                 
                         <div class="form-group">
                             <label for="number_of_players">Stripes</label>
-                            <select>
-                                <option>Player</option>
-                            </select>
+                             <select data-bind="value: stripes, options: players, optionsText: function(item) {
+                       return item.name }"></select>
                         </div>
-                        <button type="submit" class="btn btn-default">Go</button>
+                        <button data-bind="click: navigateToEndGame" type="button" class="btn btn-default">Go</button>
                         
                     </form>
                 </div>                    
             
                 <div id="end_game" class="col-lg-6" data-bind="visible: visible">
                     <h1>End Game</h1>                
+                    <h5><span data-bind="text: player1().name"></span> vs <span data-bind="text: player2().name"></span></h5>
+                    <h5>Stripes: <span data-bind="text: stripes().name"></span></h5>
+                    
                     <canvas>
                     </canvas>
                 </div>                    

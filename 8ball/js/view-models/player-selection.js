@@ -2,8 +2,7 @@ define(['knockout', 'amplify', 'game/models/player'], function(ko, amplify, Play
     return function PlayerSelectionViewModel() {
     	var self = this;
     	self.visible = ko.observable(false);
-        self.players = ko.observableArray([])
-        self.player_number = ko.observable('');
+        self.players = ko.observableArray([new Player(''), new Player(''), new Player('')])
 
         amplify.subscribe('PlayerSelectionViewModel:setVisible', function(visible) {
             self.visible(visible);
@@ -15,8 +14,9 @@ define(['knockout', 'amplify', 'game/models/player'], function(ko, amplify, Play
    
         self.navigateToOpener = function() {
             self.visible(false);
-            amplify.publish('OpenerViewModel:setVisible', true);
-            amplify.publish('OpenerViewModel:setPlayers', self.players());
+            amplify.publish('ScoresViewModel:setVisible', true);                        
+            amplify.publish('ColorsViewModel:setVisible', true);            
+            amplify.publish('GameModel:setPlayers', self.players());
             
         }
     }

@@ -8,7 +8,7 @@ define(['knockout', 'amplify'], function(ko, amplify) {
             self.visible(visible);
         });
         
-        amplify.subscribe('ScoresViewModel:setPlayers', function(players) {
+        amplify.subscribe('GameModel:setPlayers', function(players) {
             self.players(players);
         });
         
